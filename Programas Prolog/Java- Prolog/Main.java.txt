@@ -1,0 +1,70 @@
+package com.gualo.code;
+
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.jpl7.Query;
+import org.jpl7.Term;
+
+
+public class Main {
+
+	public static void main(String[] args) {
+		// Prueba de carga de archivo
+		
+	String t1 = "consult('c:/Users/jogua/workspaceEclipse/test.pl')";
+	Query q1 = new Query(t1);
+	System.out.println( t1 + " devuelve " + (q1.hasSolution() ? "sii" : "nop") );
+		
+		//Prueba esperando true o false
+		String t2 = "match(david,fredy,1)";
+		Query q2 = new Query(t2);
+		System.out.println("\n"+t2 + " devuelve " 
+		                      + (q2.hasSolution() ? "Si match" : "no match") );
+		
+		//Probando primer solución
+		String t3 = "match(david,M,1)";
+		Query q3 = new Query(t3);
+		System.out.println( "\nPrimer solución de " + t3
+				             + ": M = " + q3.oneSolution().get("M"));
+		
+		// Extrayendo todas las soluciones una variable
+		String t4 = "match(david,M,1)";
+		Query q4 = new Query(t4);     //java.util.Hashtable[] ss4 = q4.allSolutions();
+		
+		Map<String, Term>[]  todasLasSol = q4.allSolutions();
+		System.out.println( "\nTodas las soluciones de: " + t4);
+		for ( int i=0 ; i<todasLasSol.length ; i++ ) {
+		      System.out.println( "M = " + todasLasSol[i].get("M"));
+		}
+		
+		
+		
+		// Extrayendo todas las soluciones varias variables
+		String t5 = "match(H,M,5)";
+		Query q5 = new Query(t5);
+		
+		Map<String, Term>[] solutions =  q5.allSolutions();
+		System.out.println( "\nTodas las soluciones de: " + t5);
+		for ( int i=0 ; i<solutions.length ; i++ ) { 
+		   
+		    System.out.println( "H = " + solutions[i].get("H")+
+		    		            " con M = "+solutions[i].get("M"));
+		}
+		
+		// Extrayendo todas las soluciones varias variables y while
+		String t6 = "match(H,M,5)";
+		System.out.println("\n-"+t6+"------Usando while-----------");
+		Query q6 = new Query(t6);
+		while ( q6.hasMoreSolutions() ){
+		    HashMap sol_i= (HashMap) q6.nextSolution();
+	    	System.out.println( "H = " + sol_i.get("H") + 
+	    			" con M = " + sol_i.get("M"));
+		}
+		
+		
+		
+	}
+
+}

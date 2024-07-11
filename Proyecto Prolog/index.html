@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+<div class="container mt-3">
+    <h1 class="text-center">Arma tu PC</h1>
+    <br>
+    <h5>Selecciona los componentes que desees y ve tu configuración perfecta</h5>
+    <hr/>
+    <div class="col-md-4 offset-md-4 mt-5">
+            <label for="tope">Presupuesto:</label>
+            <input type="number" name="tope" id="tope" class="form-control" min="0" value="0" required>
+        </div>
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <label for="procesador">Procesador</label>
+            <select name="procesador" id="procesador" class="form-control">
+                <option value="0" selected>Selecciona una opción</option>
+                <option value="intel_corei7">Intel Core i7</option>
+                <option value="intel_corei5">Intel Core i5</option>
+                <option value="amd_ryzen5">AMD Ryzen 5</option>
+                <option value="amd_ryzen7">AMD Ryzen 7</option>
+            </select>
+            <br>
+            <img src="img/default.png" alt="" class="text-center" id="img-procesador">
+        </div>
+        <div class="col-md-4">
+        <label for="grafica">Tarjeta gráfica</label>
+            <select name="grafica" id="grafica" class="form-control">
+                <option value="0" selected>Selecciona una opción</option>
+                <option value="nvidia_rtx_2080">Nvidia RTX 2080</option>
+                <option value="nvidia_rtx_3080">Nvidia RTX 3080</option>
+                <option value="amd_radeon_vega8">Amd Radeon Vega 8</option>
+                <option value="amd_radeon_vega10">Amd Radeon Vega 10</option>
+            </select>
+            <br>
+            <img src="img/default.png" alt="" class="text-center" id="img-grafica">
+        </div>
+        <div class="col-md-4">
+        <label for="ram">Memoria RAM</label>
+            <select name="ram" id="ram" class="form-control">
+                <option value="0" selected>Selecciona una opción</option>
+                <option value="kingston_8gb">Kingston 8GB</option>
+                <option value="gigabyte_8gb">Gigabyte 8GB</option>
+                <option value="hyperx_16gb">HyperX 16GB</option>
+            </select>
+            <br>
+            <img src="img/default.png" alt="" class="text-center" id="img-ram">
+        </div>
+        <div class="col-md-4">
+        <label for="madre">Tarjeta Madre</label>
+            <select name="madre" id="madre" class="form-control">
+                <option value="0" selected>Selecciona una opción</option>
+                <option value="asus_atx_rog">Asus ATX ROG</option>
+                <option value="asus_atx_tuf">Asus ATX TUF</option>
+                <option value="gigabyte">Gigabyte</option>
+            </select>
+            <br>
+            <img src="img/default.png" alt="" class="text-center" id="img-madre">
+        </div>
+        <div class="col-md-4">
+        <label for="disco">Almacenamiento</label>
+            <select name="disco" id="disco" class="form-control">
+                <option value="0" selected>Selecciona una opción</option>
+                <option value="ssd_adata_650gb">SSD ADATA 650GB</option>
+                <option value="ssd_kingston_960gb">SSD Kingston 960GB</option>
+                <option value="ssd_m2_adata_960gb">SSD M.2 ADATA 960GB</option>
+                <option value="hdd_seagate_1tb">HDD Seagate 1TB</option>
+            </select>
+            <br>
+            <img src="img/default.png" alt="" class="text-center" id="img-disco">
+        </div><div class="col-md-4">
+        <label for="juego">Juegos</label>
+            <select name="juego" id="juego" class="form-control">
+                <option value="0" selected>Selecciona una opción</option>
+                <option value="warzone">Warzone</option>
+                <option value="league_of_legends">League Of Legends</option>
+                <option value="fornite">Fornite</option>
+                <option value="star_wars_battlefont">Star Wars Battlefont</option>
+                <option value="gta_v">GTA V</option>
+                <option value="cyberpunk_2077">Cyberpunk 2077</option>
+            </select>
+            <br>
+            <img src="img/default.png" alt="" class="text-center" id="img-juego">
+        </div>
+
+    </div>
+    <br>
+    <div class="text-center">
+    <button type="submit" id="btn" class="btn btn-primary btn-large">Buscar Combinación</button>
+    </div>
+    <hr/>
+    <h5 id="titulo">No hay resultados</h5>
+    <div id="results" class="d-none mt-5">
+        <table class="table table-success">
+            <thead>
+                <th>Procesador</th>
+                <th>Tarjeta Gráfica</th>
+                <th>Memoria RAM</th>
+                <th>Tarjeta Madre</th>
+                <th>Almacenamiento</th>
+                <th>Costo</th>
+            </thead>
+            <tbody id="cuerpo">
+                
+            </tbody>            
+        </table>
+    </div>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+<script>
+$( "#procesador" ).change(function() {
+    proc=$('#procesador').val();
+    $("#img-procesador").attr("src","img/"+proc+".jpg");
+});
+$( "#grafica" ).change(function() {
+    graf=$('#grafica').val();
+    $("#img-grafica").attr("src","img/"+graf+".jpg");
+});
+$( "#ram" ).change(function() {
+    ram=$('#ram').val();
+    $("#img-ram").attr("src","img/"+ram+".jpg");
+});
+$( "#madre" ).change(function() {
+    madre=$('#madre').val();
+    $("#img-madre").attr("src","img/"+madre+".jpg");
+});
+$( "#disco" ).change(function() {
+    disco=$('#disco').val();
+    $("#img-disco").attr("src","img/"+disco+".jpg");
+});
+$( "#juego" ).change(function() {
+    juego=$('#juego').val();
+    $("#img-juego").attr("src","img/"+juego+".jpg");
+});
+</script>
+
+<script>
+$( "#btn" ).click(function() {
+
+    $('#cuerpo').empty();
+
+    P=$('#procesador').val();
+    G=$('#grafica').val();
+    R=$('#ram').val();
+    M=$('#madre').val();
+    A=$('#disco').val();
+    T=$('#tope').val();
+    J=$('#juego').val();
+
+    if(T==0){
+        alert("Debes llenar tu presupuesto");
+    }
+    else{
+    console.log("http://127.0.0.1:8001/prolog/"+P+"/"+G+"/"+R+"/"+M+"/"+A+"/"+T+"/"+J);
+
+    $.ajax({
+        type: "get",
+        url: "http://127.0.0.1:8001/prolog/"+P+"/"+G+"/"+R+"/"+M+"/"+A+"/"+T+"/"+J,
+        dataType: "json",
+        success: function (response) {
+            if(response['opciones']==undefined){
+                alert("No se puede armar una PC con esas especificaciones");
+            }   
+            else{
+            $('#titulo').text("Resultados");
+            $('#results').removeClass("d-none");
+            response['opciones'].forEach(element => {
+                body=`<tr>
+                    <td>${element['P']}</td>
+                    <td>${element['G']}</td>
+                    <td>${element['R']}</td>
+                    <td>${element['M']}</td>
+                    <td>${element['A']}</td>
+                    <td>${element['C']}</td>
+                </tr>`;
+                $('#cuerpo').append(body);
+            });
+        }
+        }
+    });
+}
+});
+</script>
+
+</body>
+</html>
